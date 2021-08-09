@@ -4,6 +4,7 @@ class MovieCard extends React.Component{
     render(){
         const {movie} = this.props
         return(
+            
             <div className="movie-card">
                <div className="left">
                     <img src={movie.Poster} alt="movie-poster"/>
