@@ -17,14 +17,15 @@ class App extends React.Component {
     store.dispatch(addMovies(data))
     // store.dispatch({
     //   type : 'ADD_MOVIES',
-    //   movies : data
+    //   movies : data 
     // })
     console.log(this.props.store.getState())
  
     
   }
   render(){
-    const movies = this.props.store.getState();
+    // const movies = this.props.store.getState();
+    const {list} = this.props.store.getState();
     console.log('render')
   return (
     <div className="App">
@@ -36,7 +37,7 @@ class App extends React.Component {
         </div>
         <div className="list">
           {/* {data.map((movie, index) =>( */}
-          {movies.map((movie, index) =>(
+          {list.map((movie, index) =>(
             <MovieCard movie={movie} key={`movies-${index}`}  />
             ))}
         </div>
