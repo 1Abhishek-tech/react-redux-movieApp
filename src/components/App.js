@@ -6,12 +6,12 @@ import {addMovies, setShowFavourates} from "../actions";
 
 class App extends React.Component {
   
-  constructor(){
-    super()
-    this.state={
-      FavMovie : false
-    }
-  }
+  // constructor(){
+  //   super()
+  //   this.state={
+  //     FavMovie : false
+  //   }
+  // }
   componentDidMount(){
     const {store}= this.props
     store.subscribe(()=>{
@@ -20,7 +20,7 @@ class App extends React.Component {
     })
     // by making an api call
     //Using dispatch action
-    this.props.store.dispatch(addMovies(data))
+    store.dispatch(addMovies(data))
     // store.dispatch({
     //   type : 'ADD_MOVIES',
     //   movies : data 
@@ -29,8 +29,8 @@ class App extends React.Component {
   }
 
   isMovieFavourates=(movie)=>{
-    const {favourates } = this.props.store.getState()
-    const index = favourates.indexOf(movie)
+    const {movies} = this.props.store.getState()
+    const index = movies.favourates.indexOf(movie)
     if(index !== -1){
       //found the movie
       return true;
@@ -43,8 +43,8 @@ class App extends React.Component {
   
 
   render(){
-    // const movies = this.props.store.getState();
-    const { list , favourates ,showFavourates } = this.props.store.getState();  // list : [], favourates : []
+    const {movies} = this.props.store.getState();  // { movies , search }
+    const { list , favourates ,showFavourates } = movies;  // list : [], favourates : []
     console.log('render',this.props.store.getState())
     const displayMovies = showFavourates ? favourates : list;
   return (
@@ -64,6 +64,7 @@ class App extends React.Component {
             ))}
           
         </div>
+        {displayMovies.length === 0 ?<div className="no-movies">No movies to Display</div>:null }
       </div>
     </div>
   );
