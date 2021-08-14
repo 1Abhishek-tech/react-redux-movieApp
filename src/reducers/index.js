@@ -1,4 +1,4 @@
-import { ADD_MOVIES ,ADD_TO_FAVOURATES , REMOVE_FROM_FAVOURATES, SET_SHOW_FAVOURATES} from "../actions";
+import { ADD_MOVIES ,ADD_TO_FAVOURATES , REMOVE_FROM_FAVOURATES, SET_SHOW_FAVOURATES ,ADD_MOVIE_TO_LIST} from "../actions";
 import { combineReducers } from "redux";
 
 const initialMoviesState = {
@@ -37,6 +37,11 @@ export function movies (state = initialMoviesState , action){
             return {
                 ...state,
                 showFavourates : action.val
+            }
+        case ADD_MOVIE_TO_LIST : 
+            return {
+                ...state,
+                list : [action.movie , ...state.list]
             }
         default : 
             return state
