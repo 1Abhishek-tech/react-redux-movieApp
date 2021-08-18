@@ -25,8 +25,8 @@ const logger =
     //middleware code
     if(typeof action !== 'function'){
       console.log("Action Type is ", action.type);
-      next(action);
     }
+    next(action);
   };
 
 // const thunk = ({ dispatch, getState})=>(next)=>(action)=>{

@@ -9,7 +9,7 @@ export const ADD_TO_FAVOURATES = "ADD_TO_FAVOURATES";
 export const REMOVE_FROM_FAVOURATES = "REMOVE_FROM_FAVOURATES";
 export const SET_SHOW_FAVOURATES = "SET_SHOW_FAVOURATES";
 export const ADD_MOVIE_TO_LIST = "ADD_MOVIE_TO_LIST";
-export const HANDLE_MOVIE_SEARCH = "HANDLE_MOVIE_SEARCH";
+export const ADD_SEARCH_RESULT = "ADD_SEARCH_RESULT";
 
 //action creators
 export function addMovies(movies) {
@@ -51,7 +51,14 @@ export function handleMovieSearch(movie) {
         console.log("movie", movie);
         //dispatch an action
         // dispatch({type : 'ADD_SEARCH_RESULT',movie})
+        dispatch(addMovieSearchResult(movie))
       });
   };
 }
- 
+
+export function addMovieSearchResult(movie){
+  return{
+    type :  ADD_SEARCH_RESULT,
+    movie
+  }
+}
