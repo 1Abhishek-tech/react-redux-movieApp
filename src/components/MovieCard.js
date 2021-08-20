@@ -1,5 +1,6 @@
 import React from "react";
 import { addToFavourate , removeFromFavourates} from "../actions";
+import {connect} from 'react-redux'
 
 class MovieCard extends React.Component{
     handleFavourateClick=()=>{
@@ -34,5 +35,9 @@ class MovieCard extends React.Component{
         )
     }
 }
-
-export default MovieCard;
+function mapStateToProps({movies}) {
+    return{
+        movies,
+    }
+}
+export default connect(mapStateToProps)(MovieCard);

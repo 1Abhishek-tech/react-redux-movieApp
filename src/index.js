@@ -1,4 +1,5 @@
-import React from "react";
+import React, { createContext } from "react";
+import { Provider } from "react-redux";
 import ReactDOM from "react-dom";
 import { createStore, applyMiddleware } from "redux";
 import "./index.css";
@@ -40,14 +41,52 @@ const logger =
 const store = createStore(rootReducer, applyMiddleware(logger, thunk));
 console.log("store ", store);
 // console.log('BEFORE STATE ', store.getState())
-// store.dispatch({
-//   type : 'ADD_MOVIES',
-//   movies : [{name : 'SuperMan'}]
-// })
-// console.log('AFTER STATE ', store.getState())
+export const StoreContext = createContext()
+console.log("Store Context ",StoreContext)
+
+// class Provider extends React.Component{
+//   render(){
+//     const {store} = this.props
+//     return <StoreContext.Provider value={store}>{this.props.children }</StoreContext.Provider>
+//   }
+// }
+// export function connect(callback){
+//   return function(Component){
+//      class ConnectedComponent extends React.Component{
+//       constructor(props){
+//         super(props)
+//         this.unsubscribe = this.props.store.subscribe(()=> this.forceUpdate())
+//       }
+//       componentWillUnmount(){
+//         this.unsubscribe()
+//       }
+//       render(){
+//         const {store} = this.props
+//         const state = store.getState()
+//         const dataToBePassedAsProps = callback(state)
+//         return (<Component {...dataToBePassedAsProps } dispatch={store.dispatch}/>)
+//       }
+//     }
+//     return class ConnectedComponentWrapper extends React.Component{
+//       render(){
+//         return(
+//           <StoreContext.Consumer >
+//             {(store)=>
+//               <ConnectedComponent store={store} />
+//             }
+//           </StoreContext.Consumer>
+//         )
+//       }
+//     }
+//     // return ConnectedComponentWrapper
+//   }
+// }
+
 ReactDOM.render(
   <React.StrictMode>
+    <Provider store={store}>
     <App store={store} />
+    </Provider>
   </React.StrictMode>,
   document.getElementById("root")
 );
