@@ -24,7 +24,7 @@ const logger =
   (next) =>
   (action) => {
     //middleware code
-    if(typeof action !== 'function'){
+    if (typeof action !== "function") {
       console.log("Action Type is ", action.type);
     }
     next(action);
@@ -41,8 +41,8 @@ const logger =
 const store = createStore(rootReducer, applyMiddleware(logger, thunk));
 console.log("store ", store);
 // console.log('BEFORE STATE ', store.getState())
-export const StoreContext = createContext()
-console.log("Store Context ",StoreContext)
+export const StoreContext = createContext();
+console.log("Store Context ", StoreContext);
 
 // class Provider extends React.Component{
 //   render(){
@@ -85,7 +85,7 @@ console.log("Store Context ",StoreContext)
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-    <App store={store} />
+      <App store={store} />
     </Provider>
   </React.StrictMode>,
   document.getElementById("root")

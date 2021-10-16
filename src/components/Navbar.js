@@ -8,7 +8,7 @@ class Navbar extends React.Component {
     super(props);
     this.state = {
       // showSearchResults: true,
-      searchText: ""
+      searchText: "",
     };
   }
   handleAddToMovies = (movie) => {
@@ -27,7 +27,7 @@ class Navbar extends React.Component {
     });
   };
   render() {
-    const { result : movie, showSearchResults } = this.props.search;
+    const { result: movie, showSearchResults } = this.props.search;
     return (
       <div className="nav">
         <div className="search-container">
@@ -64,9 +64,9 @@ class Navbar extends React.Component {
 //   }
 // }
 
-function mapStateToProps({search}){
-  return{
-    search ,
-  }
+function mapStateToProps({ search }) {
+  return {
+    search,
+  };
 }
 export default connect(mapStateToProps)(Navbar);
